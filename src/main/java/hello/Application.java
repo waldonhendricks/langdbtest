@@ -2,51 +2,16 @@ package hello;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PostMapping;
-
-
 import org.springframework.web.bind.annotation.*;
-
 
 @SpringBootApplication
 @RestController
-
 public class Application {
 
     @RequestMapping("/")
     public String home() {
         return "Hello Docker World";
     }
-
-    //HTTP method WriteOperation
-
-    //Cassandra CRUD
-
-    @PostMapping(value="/java/cassandra/write/{number}")
-    public String postCassandra(@PathVariable Long number) { return "You are asking me to write "+number+" objects ";
-    }
-
-//Redis CRUD
-
-    @PostMapping(value="/java/redis/write/{number}")
-    public String postRedis(@PathVariable Long number) { return "You are asking me to write "+number+" objects ";
-    }
-
-//Mongo CRUD
-
-    @PostMapping(value="/java/mongo/write/{number}")
-    public String postMongo(@PathVariable Long number) { return "You are asking me to write "+number+" objects ";
-    }
-
-
-    //Dgraph CRUD
-    @PostMapping(value="/java/dgraph/write/{number}")
-    public String postDgraph(@PathVariable Long number) { return "You are asking me to write "+number+" objects ";
-    }
-
-
-
 
 // HTTP method ReadOperation
 
@@ -76,31 +41,64 @@ public class Application {
     }
 
 
+//HTTP method WriteOperation
+
+    //Cassandra CRUD
+
+    @RequestMapping(value="/java/cassandra/write/{number}", method=RequestMethod.GET)
+    public String postCassandra(@PathVariable Long number) { return "You are asking me to write "+number+" objects ";
+    }
+
+
+//Redis CRUD
+
+    @RequestMapping(value="/java/redis/write/{number}", method=RequestMethod.GET)
+    public String postRedis(@PathVariable Long number) {
+        return "You are asking me to write "+number+" objects ";
+    }
+
+//Mongo CRUD
+
+    @RequestMapping(value="/java/mongo/write/{number}", method=RequestMethod.GET)
+    public String postMongo(@PathVariable Long number) { return "You are asking me to write "+number+" objects ";
+    }
+
+
+//Dgraph CRUD
+    @RequestMapping(value="/java/dgraph/write/{number}", method=RequestMethod.GET)
+    public String postDgraph(@PathVariable Long number) {
+        return "You are asking me to write "+number+" objects ";
+    }
+
 //HTTP method DeleteOperation
 
-// Cassandra CRUD
+    //Cassandra CRUD
 
-    @DeleteMapping(value="/java/cassandra/delete/{number}")
+    @RequestMapping (value="/java/cassandra/delete/{number}", method=RequestMethod.GET)
     public String deleteCassandra(@PathVariable Long number) { return "You are asking me to delete "+number+" objects ";
     }
 
 
 //Redis CRUD
 
-    @DeleteMapping(value="/java/redis/write/{number}")
-    public String deleteRedis(@PathVariable Long number) { return "You are asking me to delete "+number+" objects ";
+    @RequestMapping(value="/java/redis/delete/{number}", method=RequestMethod.GET)
+    public String deleteRedis(@PathVariable Long number) {
+        return "You are asking me to delete "+number+" objects ";
     }
 
 //Mongo CRUD
 
-    @DeleteMapping(value="/java/mongo/write/{number}")
+    @RequestMapping(value="/java/mongo/delete/{number}", method=RequestMethod.GET)
     public String deleteMongo(@PathVariable Long number) { return "You are asking me to delete "+number+" objects ";
     }
 
+
     //Dgraph CRUD
-    @DeleteMapping(value="/java/dgraph/write/{number}")
-    public String deleteDgraph(@PathVariable Long number) { return "You are asking me to delete "+number+" objects ";
+    @RequestMapping(value="/java/dgraph/delete/{number}", method=RequestMethod.GET)
+    public String deleteDgraph(@PathVariable Long number) {
+        return "You are asking me to delete "+number+" objects ";
     }
+
 
 
 
